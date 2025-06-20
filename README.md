@@ -2,6 +2,48 @@
 
 **A powerful MCP (Model Context Protocol) server for multi-platform notifications and interactive AI workflows**
 
+[![npm version](https://badge.fury.io/js/notify-me-maybe-mcp.svg)](https://www.npmjs.com/package/notify-me-maybe-mcp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## 🚀 TLDR - Quick Start
+
+**Get started in 2 minutes:**
+
+1. **Create Telegram Bot**: 
+   - Message [@BotFather](https://t.me/botfather) on Telegram
+   - Use `/newbot` to create a bot and get your `BOT_TOKEN`
+   - Start a chat with your bot and get your `CHAT_ID`
+
+2. **Add to MCP Configuration**:
+   ```json
+   {
+     "mcpServers": {
+       "notify-me-maybe": {
+         "command": "npx",
+         "args": ["-y", "notify-me-maybe-mcp"],
+         "env": {
+           "TELEGRAM_BOT_TOKEN": "your_bot_token_here",
+           "TELEGRAM_CHAT_ID": "your_chat_id_here",
+           "TELEGRAM_PROMPT_ENABLED": "true",
+           "TELEGRAM_INTERACTION_ENABLED": "true",
+           "DEFAULT_NOTIFICATION_SERVICE": "telegram",
+           "LANGUAGE": "en"
+         }
+       }
+     }
+   }
+   ```
+
+3. **Restart Your AI Assistant**:
+   - **Claude Desktop**: Restart the application
+   - **Cursor**: Restart and activate the MCP configuration
+
+4. **Test**: Ask your AI assistant to send you a notification!
+
+**That's it!** 🎉 No installation, no cloning, no building required.
+
+---
+
 ## 🌐 Language Support
 
 - **English** (Current) - You are here
@@ -374,11 +416,66 @@ LANGUAGE=en
 DEBUG=false
 ```
 
-## Installation
+## 📦 Installation & Setup
+
+### 🌟 Method 1: NPX (Recommended - No Installation Required)
+
+**Perfect for most users - just add to your MCP configuration:**
+
+#### MCP Configuration File Locations:
+
+**Windows:**
+```
+%APPDATA%\Claude\claude_desktop_config.json
+```
+
+**macOS:**
+```
+~/Library/Application Support/Claude/claude_desktop_config.json
+```
+
+**Linux:**
+```
+~/.config/Claude/claude_desktop_config.json
+```
+
+#### Add to Your MCP Configuration:
+```json
+{
+  "mcpServers": {
+    "notify-me-maybe": {
+      "command": "npx",
+      "args": ["-y", "notify-me-maybe-mcp"],
+      "env": {
+        "TELEGRAM_BOT_TOKEN": "your_bot_token_here",
+        "TELEGRAM_CHAT_ID": "your_chat_id_here",
+        "TELEGRAM_PROMPT_ENABLED": "true",
+        "TELEGRAM_ENABLE_PROMPT_RECEIVING": "true",
+        "TELEGRAM_INTERACTION_ENABLED": "true",
+        "TELEGRAM_INTERACTION_TIMEOUT": "300000",
+        "TELEGRAM_INTERACTION_MAX_PENDING": "5",
+        "CUSTOM_WEBHOOK_URL": "your_custom_webhook_url_here",
+        "CUSTOM_WEBHOOK_SECRET": "your_webhook_secret_here",
+        "DEFAULT_NOTIFICATION_SERVICE": "telegram",
+        "LANGUAGE": "en",
+        "DEBUG": "false"
+      }
+    }
+  }
+}
+```
+
+> **⚠️ Important**: After adding the configuration, you must restart your AI assistant:
+> - **Claude Desktop**: Completely close and restart the application
+> - **Cursor**: Restart Cursor and ensure the MCP configuration is activated
+
+### 🛠️ Method 2: Local Development Installation
+
+**For developers who want to modify the code:**
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/NotifyMeMaybe.git
+   git clone https://github.com/keoy7am/NotifyMeMaybe.git
    cd NotifyMeMaybe
    ```
 
@@ -387,31 +484,46 @@ DEBUG=false
    npm install
    ```
 
-3. **Configure environment**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
-
-4. **Build the project**
+3. **Build the project**
    ```bash
    npm run build
    ```
 
-## Configuration
+4. **Use local path in MCP configuration**
+   ```json
+   {
+     "mcpServers": {
+       "notify-me-maybe": {
+         "command": "node",
+         "args": ["/absolute/path/to/NotifyMeMaybe/dist/index.js"],
+         "env": {
+           "TELEGRAM_BOT_TOKEN": "your_token",
+           "TELEGRAM_CHAT_ID": "your_chat_id"
+         }
+       }
+     }
+   }
+   ```
 
-### Environment Variables
+## 🔧 Configuration
+
+### Required Environment Variables
 ```env
 # Telegram Configuration (Required)
 TELEGRAM_BOT_TOKEN=your_bot_token_here
 TELEGRAM_CHAT_ID=your_chat_id_here
+```
+
+### Optional Environment Variables
+```env
+# Advanced Telegram Features
 TELEGRAM_PROMPT_ENABLED=true
 TELEGRAM_ENABLE_PROMPT_RECEIVING=true
 TELEGRAM_INTERACTION_ENABLED=true
 TELEGRAM_INTERACTION_TIMEOUT=300000
 TELEGRAM_INTERACTION_MAX_PENDING=5
 
-# Custom Webhook Configuration (Optional)
+# Custom Webhook Configuration
 CUSTOM_WEBHOOK_URL=your_custom_webhook_url_here
 CUSTOM_WEBHOOK_SECRET=your_webhook_secret_here
 
@@ -421,30 +533,20 @@ LANGUAGE=en
 DEBUG=false
 ```
 
-### MCP Configuration
-Add to your MCP configuration file:
-```json
-{
-  "mcpServers": {
-    "notify-me-maybe": {
-      "command": "node",
-      "args": ["A:/path/to/NotifyMeMaybe/dist/index.js"],
-      "env": {
-        "TELEGRAM_BOT_TOKEN": "your_token",
-        "TELEGRAM_CHAT_ID": "your_chat_id",
-        "TELEGRAM_PROMPT_ENABLED": "true",
-        "TELEGRAM_ENABLE_PROMPT_RECEIVING": "true",
-        "TELEGRAM_INTERACTION_ENABLED": "true",
-        "TELEGRAM_INTERACTION_TIMEOUT": "300000",
-        "TELEGRAM_INTERACTION_MAX_PENDING": "5",
-        "DEFAULT_NOTIFICATION_SERVICE": "telegram",
-        "LANGUAGE": "en",
-        "DEBUG": "false"
-      }
-    }
-  }
-}
-```
+### 📱 Getting Telegram Bot Token & Chat ID
+
+1. **Create a Telegram Bot**:
+   - Open Telegram and search for [@BotFather](https://t.me/botfather)
+   - Send `/newbot` command
+   - Follow the instructions to create your bot
+   - Copy the bot token provided
+
+2. **Get Your Chat ID**:
+   - Start a conversation with your new bot
+   - Send any message to the bot
+   - Visit: `https://api.telegram.org/bot<YourBotToken>/getUpdates`
+   - Look for `"chat":{"id":123456789}` in the response
+   - Use this number as your `TELEGRAM_CHAT_ID`
 
 ## Usage
 
@@ -640,11 +742,33 @@ For support and questions:
 
 ---
 
-**Ready to get started?**
+## 🎯 Ready to Get Started?
 
+### Option 1: Quick Start (Recommended)
+1. Check out the [TLDR section](#-tldr---quick-start) above
+2. Get your Telegram bot token in 30 seconds
+3. Add one JSON configuration
+4. Restart your AI assistant
+5. Start receiving notifications!
+
+### Option 2: Advanced Setup
 1. Choose an [Agent Prompt Configuration](#agent-prompt-configurations) above
-2. Copy the complete prompt to your AI assistant
-3. Configure your NotifyMeMaybe services
+2. Copy the complete prompt to your AI assistant system prompt
+3. Configure your NotifyMeMaybe services with all features
 4. Start building interactive AI workflows!
 
-**NotifyMeMaybe** - Making AI-human interaction seamless, one notification at a time! 🚀 
+### 📦 NPM Package
+```bash
+# View package information
+npm view notify-me-maybe-mcp
+
+# Install globally (optional)
+npm install -g notify-me-maybe-mcp
+
+# Use via npx (recommended - no installation needed)
+npx notify-me-maybe-mcp
+```
+
+**NotifyMeMaybe** - Making AI-human interaction seamless, one notification at a time! 🚀
+
+> 💡 **Pro Tip**: Don't forget the restart step! Many users miss this and wonder why it's not working. Your AI assistant needs to reload the MCP configuration to recognize the new tools. 
