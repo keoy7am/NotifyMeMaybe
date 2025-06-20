@@ -1,6 +1,6 @@
 {
   "name": "notify-me-maybe-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A powerful MCP (Model Context Protocol) server for multi-platform notifications and interactive AI workflows. Supports Telegram, webhooks, and synchronous user interactions.",
   "main": "dist/index.js",
   "type": "module",
