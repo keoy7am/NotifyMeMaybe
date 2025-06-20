@@ -1,0 +1,22 @@
+{
+  "description": "Claude Desktop MCP Configuration Example - Add this configuration to your Claude Desktop config",
+  "mcpServers": {
+    "notify-me-maybe": {
+      "command": "node",
+      "args": ["path/to/NotifyMeMaybe/dist/index.js"],
+      "env": {
+        "TELEGRAM_BOT_TOKEN": "your_telegram_bot_token_here",
+        "TELEGRAM_CHAT_ID": "your_telegram_chat_id_here",
+        "TELEGRAM_ENABLE_PROMPT_RECEIVING": "true",
+        "TELEGRAM_PROMPT_ENABLED": "true",
+        "TELEGRAM_INTERACTION_ENABLED": "true",
+        "TELEGRAM_INTERACTION_TIMEOUT": "60000",
+        "TELEGRAM_INTERACTION_MAX_PENDING": "5",
+        "DEFAULT_NOTIFICATION_SERVICE": "telegram",
+        "LANGUAGE": "zh-TW",
+        "DEBUG": "false",
+        "INTERACTION_AUTO_REJECT": "true"
+      }
+    }
+  }
+} 
